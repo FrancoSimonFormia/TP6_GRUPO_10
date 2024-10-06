@@ -2,7 +2,6 @@ package presentacion.vista;
 
 import java.awt.BorderLayout;
 
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;

@@ -2,6 +2,10 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JTextField;
 
 import entidad.Persona;
 import negocio.PersonaNegocio;
@@ -17,6 +21,15 @@ public class ControladorPanelAgregar implements ActionListener {
         this.PersonaNegocio = PersonaNegocio;
 
         this.panelAgregar.getBtnAceptar().addActionListener(this);
+        
+        
+        SoloNumerosKeyListener soloNumerosKeyListener = new SoloNumerosKeyListener();
+        this.panelAgregar.getTxtDni().addKeyListener(soloNumerosKeyListener);
+
+        
+        SoloLetrasKeyListener soloLetrasKeyListener = new SoloLetrasKeyListener();
+        this.panelAgregar.getTxtNombre().addKeyListener(soloLetrasKeyListener);
+        this.panelAgregar.getTxtApellido().addKeyListener(soloLetrasKeyListener);
     }
     
     private boolean esSoloLetras(String cadena) {
@@ -28,6 +41,7 @@ public class ControladorPanelAgregar implements ActionListener {
     }
 
     private void AgregarPersona(ActionEvent a) {
+    	
         String dni = panelAgregar.getDni();
         String nombre = panelAgregar.getNombre();
         String apellido = panelAgregar.getApellido();

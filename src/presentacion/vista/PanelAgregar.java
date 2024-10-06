@@ -1,11 +1,12 @@
 package presentacion.vista;
 
-import javax.swing.JPanel;
+import java.awt.Font;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.Font;
 
 public class PanelAgregar extends JPanel {
 
@@ -60,6 +61,17 @@ public class PanelAgregar extends JPanel {
 		add(txtDni);
 	}
 	
+	public JTextField getTxtDni() {
+		return txtDni;
+	}
+	
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+	
+	public JTextField getTxtApellido() {
+		return txtApellido;
+	}
 	
 	public String getNombre() {
 	    return txtNombre.getText();

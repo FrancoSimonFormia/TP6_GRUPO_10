@@ -3,13 +3,13 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import negocio.PersonaNegocio;
+import negocioImplementacion.PersonaNegocioImp;
 import presentacion.vista.PanelAgregar;
 import presentacion.vista.PanelEliminar;
 import presentacion.vista.PanelListar;
 import presentacion.vista.PanelModificar;
 import presentacion.vista.VentanaPrincipal;
-import negocio.PersonaNegocio;
-import negocioImplementacion.PersonaNegocioImp;
 
 public class ControladorVentanaPrincipal implements ActionListener {
 	private VentanaPrincipal ventana;

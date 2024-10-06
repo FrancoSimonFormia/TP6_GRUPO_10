@@ -18,6 +18,14 @@ public class ControladorPanelAgregar implements ActionListener {
 
         this.panelAgregar.getBtnAceptar().addActionListener(this);
     }
+    
+    private boolean esSoloLetras(String cadena) {
+        return cadena.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+");
+    }
+    
+    private boolean esSoloNumeros(String cadena) {
+        return cadena.matches("\\d+");
+    }
 
     private void AgregarPersona(ActionEvent a) {
         String dni = panelAgregar.getDni();
@@ -29,9 +37,30 @@ public class ControladorPanelAgregar implements ActionListener {
             return;
         }
 
+        if (!esSoloLetras(nombre)) {
+            panelAgregar.mostrarMensaje("El nombre solo puede contener letras.");
+            return;
+        }
+
+        if (!esSoloLetras(apellido)) {
+            panelAgregar.mostrarMensaje("El apellido solo puede contener letras.");
+            return;
+        }
+        
+        if (!esSoloNumeros(dni)) {
+            panelAgregar.mostrarMensaje("El DNI solo puede contener números.");
+            return;
+        }
+        
+        if (PersonaNegocio.existeDni(dni)) {
+            panelAgregar.mostrarMensaje("El DNI ya está registrado.");
+            return;
+        }
+        
         Persona nuevaPersona = new Persona(dni, nombre, apellido);
 
         boolean estado = PersonaNegocio.insert(nuevaPersona);
+        
         String mensaje = estado ? "Persona agregada con éxito" : "Error al agregar la persona";
         panelAgregar.mostrarMensaje(mensaje);
 

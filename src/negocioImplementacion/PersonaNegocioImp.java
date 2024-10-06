@@ -20,5 +20,11 @@ public class PersonaNegocioImp implements PersonaNegocio{
 		}
 		return estado;
 	}
+	
+	 public boolean existeDni(String dni) {
+	      	        return pdao.existeDni(dni);
+	    }
+
+	
 
 }

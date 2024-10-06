@@ -23,11 +23,11 @@ public class ControladorPanelAgregar implements ActionListener {
         this.panelAgregar.getBtnAceptar().addActionListener(this);
         
         
-        SoloNumerosKeyListener soloNumerosKeyListener = new SoloNumerosKeyListener();
+        KeyListener soloNumerosKeyListener = new SoloNumerosKeyListener();
         this.panelAgregar.getTxtDni().addKeyListener(soloNumerosKeyListener);
 
         
-        SoloLetrasKeyListener soloLetrasKeyListener = new SoloLetrasKeyListener();
+        KeyListener soloLetrasKeyListener = new SoloLetrasKeyListener();
         this.panelAgregar.getTxtNombre().addKeyListener(soloLetrasKeyListener);
         this.panelAgregar.getTxtApellido().addKeyListener(soloLetrasKeyListener);
     }

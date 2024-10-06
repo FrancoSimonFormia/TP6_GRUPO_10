@@ -5,11 +5,14 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import entidad.Persona;
+
 import javax.swing.JButton;
 
 public class PanelModificar extends JPanel {
     private static final long serialVersionUID = 1L;
-    private JList<String> listPersonas;
+    private JList<Persona> listPersonas;
     private JTextField txtNombre;
     private JTextField txtApellido;
     private JTextField txtDni;
@@ -47,8 +50,23 @@ public class PanelModificar extends JPanel {
         add(btnModificar);
     }
 
-    public JList<String> getListPersonas() {
+    public JList<Persona> getListPersonas() {
         return listPersonas;
     }
+    
+    public JTextField getTxtNombre() {
+    	return txtNombre;
+    }
+    
+    public JTextField getTxtApellido() {
+    	return txtApellido;
+    }
+    
+    public JTextField getTxtDni() {
+    	return txtDni;
+    }
 
+    public JButton getBtnModificar() {
+    	return btnModificar;
+    }
 }

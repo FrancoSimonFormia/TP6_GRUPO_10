@@ -13,6 +13,12 @@ public class Persona {
 		this.apellido = apellido;
 	}
 
+
+
+	public Persona() {
+		
+	}
+
 	public String getDni() {
 		return dni;
 	}

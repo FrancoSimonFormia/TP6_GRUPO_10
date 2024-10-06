@@ -20,7 +20,7 @@ public class ControladorVentanaPrincipal implements ActionListener {
         this.personaNegocio = new PersonaNegocioImp();
         
         ventana.getMntmAgregar().addActionListener(e -> mostrarPanelAgregar());
-        ventana.getMntmModificar().addActionListener(e -> ventana.mostrarPanel(new PanelModificar()));
+        ventana.getMntmModificar().addActionListener(e -> mostrarPanelModificar());
         ventana.getMntmEliminar().addActionListener(e -> ventana.mostrarPanel(new PanelEliminar()));
         ventana.getMntmListar().addActionListener(e -> ventana.mostrarPanel(new PanelListar()));
     }
@@ -30,6 +30,12 @@ public class ControladorVentanaPrincipal implements ActionListener {
        
         new ControladorPanelAgregar(panelAgregar, personaNegocio);
         ventana.mostrarPanel(panelAgregar);
+    }
+    
+    private void mostrarPanelModificar() {
+        PanelModificar panelModificar = new PanelModificar();
+        new ControladorPanelModificar(panelModificar, personaNegocio);
+        ventana.mostrarPanel(panelModificar);
     }
     
     public void inicializar() {

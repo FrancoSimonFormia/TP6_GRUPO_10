@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.PersonaDao;
 import entidad.Persona;
@@ -13,7 +15,7 @@ public class PersonaDaoImp implements PersonaDao
 {
 	private static final String insert = "INSERT INTO personas(Dni, nombre, apellido) VALUES(?, ?, ?)";
 	private static final String verificarDni = "SELECT COUNT(*) FROM personas WHERE Dni = ?";	
-	
+	private static final String selectPersonas = "SELECT Dni, nombre, apellido FROM personas";
 		
 	public boolean existeDni(String dni) {
 	    PreparedStatement statement;
@@ -65,4 +67,30 @@ public class PersonaDaoImp implements PersonaDao
 		
 		return isInsertExitoso;
 	}
+
+	@Override
+	public List<Persona> selectPersonas() {
+		 PreparedStatement statement;
+		    ResultSet resultSet;
+		    ArrayList<Persona> personas = new ArrayList<>();
+		    Connection conexion = Conexion.getConexion().getSQLConexion();
+
+		    try {
+		        statement = conexion.prepareStatement(selectPersonas);
+		        resultSet = statement.executeQuery();
+
+		        while (resultSet.next()) {
+		            Persona persona = new Persona();
+		            persona.setDni(resultSet.getString("Dni"));
+		            persona.setNombre(resultSet.getString("nombre"));
+		            persona.setApellido(resultSet.getString("apellido"));
+		            personas.add(persona);
+		        }
+		      
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		    return personas;
+		}
 }
+

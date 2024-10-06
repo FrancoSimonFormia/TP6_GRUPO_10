@@ -1,6 +1,8 @@
 package negocioImplementacion;
 
 
+import java.util.List;
+
 import dao.PersonaDao;
 import daoImplementacion.PersonaDaoImp;
 import entidad.Persona;
@@ -25,6 +27,10 @@ public class PersonaNegocioImp implements PersonaNegocio{
 	      	        return pdao.existeDni(dni);
 	    }
 
+	 @Override
+	    public List<Persona> selectPersonas() {
+	        return pdao.selectPersonas();
+	    }
 	
 
 }

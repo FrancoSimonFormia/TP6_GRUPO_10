@@ -42,11 +42,11 @@ public class ControladorPanelModificar {
 				txtNombre.addKeyListener(SoloLetrasKeyListener);
 				txtApellido.addKeyListener(SoloLetrasKeyListener);
 				
-		        String dni = txtDni.getText();
-		        String nombre = txtNombre.getText();
-		        String apellido = txtApellido.getText();
+		        String dni = txtDni.getText().trim();
+		        String nombre = txtNombre.getText().trim();
+		        String apellido = txtApellido.getText().trim();
 
-		        if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
+		        if (nombre.trim().isEmpty() || apellido.trim().isEmpty()) {
 		            panelModificar.mostrarMensaje("Debe completar todos los campos.");
 		            return;
 		        }

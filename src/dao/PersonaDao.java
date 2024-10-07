@@ -10,5 +10,7 @@ public interface PersonaDao
 
 	public boolean existeDni(String dni);
 	
+	public boolean update(Persona persona);
+	
 	 List<Persona> selectPersonas();
 }

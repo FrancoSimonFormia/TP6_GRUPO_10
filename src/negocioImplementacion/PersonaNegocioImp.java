@@ -31,6 +31,12 @@ public class PersonaNegocioImp implements PersonaNegocio{
 	    public List<Persona> selectPersonas() {
 	        return pdao.selectPersonas();
 	    }
+
+	@Override
+	public boolean update(Persona persona) {
+		
+		return pdao.update(persona);
+	}
 	
 
 }

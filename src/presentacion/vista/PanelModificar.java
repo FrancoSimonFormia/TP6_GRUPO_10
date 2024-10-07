@@ -2,6 +2,7 @@ package presentacion.vista;
 
 import javax.swing.JPanel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -68,5 +69,15 @@ public class PanelModificar extends JPanel {
 
     public JButton getBtnModificar() {
     	return btnModificar;
+    }
+    
+	public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+	
+	public void limpiarCampos() {
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtDni.setText("");
     }
 }

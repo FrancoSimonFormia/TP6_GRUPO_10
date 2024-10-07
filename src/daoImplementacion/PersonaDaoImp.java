@@ -16,7 +16,8 @@ public class PersonaDaoImp implements PersonaDao
 	private static final String insert = "INSERT INTO personas(Dni, nombre, apellido) VALUES(?, ?, ?)";
 	private static final String verificarDni = "SELECT COUNT(*) FROM personas WHERE Dni = ?";	
 	private static final String selectPersonas = "SELECT Dni, nombre, apellido FROM personas";
-		
+	private static final String update = "UPDATE Personas set Nombre = ?, Apellido = ? where Dni = ?";
+	
 	public boolean existeDni(String dni) {
 	    PreparedStatement statement;
 	    Connection conexion = Conexion.getConexion().getSQLConexion();
@@ -69,6 +70,41 @@ public class PersonaDaoImp implements PersonaDao
 	}
 
 	@Override
+	public boolean update(Persona persona) {
+		
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		boolean isInsertExitoso = false;
+		
+		try
+		{
+			statement = conexion.prepareStatement(update);
+			statement.setString(1, persona.getNombre());
+			statement.setString(2, persona.getApellido());
+			statement.setString(3, persona.getDni());
+			if(statement.executeUpdate() > 0)
+			{
+				conexion.commit();
+				isInsertExitoso = true;
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			try {
+				conexion.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		return isInsertExitoso;
+		
+	}
+	
+	
+	
+	@Override
 	public List<Persona> selectPersonas() {
 		 PreparedStatement statement;
 		    ResultSet resultSet;
@@ -92,5 +128,7 @@ public class PersonaDaoImp implements PersonaDao
 		    }
 		    return personas;
 		}
+
+
 }
 

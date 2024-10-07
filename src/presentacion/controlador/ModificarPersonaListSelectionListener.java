@@ -33,6 +33,8 @@ public class ModificarPersonaListSelectionListener implements ListSelectionListe
 			txtNombre.setText(aux.getNombre());
 			txtApellido.setText(aux.getApellido());
 			txtDni.setText(aux.getDni());
+			
+			txtDni.setEditable(false);
 		}
 		
 	}

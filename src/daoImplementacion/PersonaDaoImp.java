@@ -17,6 +17,7 @@ public class PersonaDaoImp implements PersonaDao
 	private static final String verificarDni = "SELECT COUNT(*) FROM personas WHERE Dni = ?";	
 	private static final String selectPersonas = "SELECT Dni, nombre, apellido FROM personas";
 	private static final String update = "UPDATE Personas set Nombre = ?, Apellido = ? where Dni = ?";
+	private static final String delete = "DELETE From Personas Where Dni = ?";
 	
 	public boolean existeDni(String dni) {
 	    PreparedStatement statement;
@@ -99,6 +100,36 @@ public class PersonaDaoImp implements PersonaDao
 		}
 		
 		return isInsertExitoso;
+		
+	}
+	
+public boolean delete(Persona persona) {
+		
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		boolean isDeleteExitoso = false;
+		
+		try
+		{
+			statement = conexion.prepareStatement(delete);
+			statement.setString(3, persona.getDni());
+			if(statement.executeUpdate() > 0)
+			{
+				conexion.commit();
+				isDeleteExitoso = true;
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			try {
+				conexion.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		return isDeleteExitoso;
 		
 	}
 	

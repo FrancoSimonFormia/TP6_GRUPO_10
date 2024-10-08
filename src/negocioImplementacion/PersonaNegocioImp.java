@@ -37,6 +37,11 @@ public class PersonaNegocioImp implements PersonaNegocio{
 		
 		return pdao.update(persona);
 	}
+
+	@Override
+	public boolean delete(Persona persona) {
+		return pdao.delete(persona);
+	}
 	
 
 }

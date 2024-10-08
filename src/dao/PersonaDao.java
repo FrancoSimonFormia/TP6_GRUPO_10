@@ -12,5 +12,7 @@ public interface PersonaDao
 	
 	public boolean update(Persona persona);
 	
+	public boolean delete(Persona persona);
+	
 	 List<Persona> selectPersonas();
 }

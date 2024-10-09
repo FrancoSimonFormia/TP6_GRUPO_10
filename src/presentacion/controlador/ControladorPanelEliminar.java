@@ -11,7 +11,7 @@ import entidad.Persona;
 import negocio.PersonaNegocio;
 import presentacion.vista.PanelEliminar;
 
-public class ControladorPanelEliminar implements ActionListener, ListSelectionListener {
+public class ControladorPanelEliminar implements ActionListener{
 
     private PanelEliminar panelEliminar;
     private PersonaNegocio personaNegocio;
@@ -19,12 +19,11 @@ public class ControladorPanelEliminar implements ActionListener, ListSelectionLi
     public ControladorPanelEliminar(PanelEliminar panelEliminar, PersonaNegocio personaNegocio) {
         this.panelEliminar = panelEliminar;
         this.personaNegocio = personaNegocio;      
-        this.panelEliminar.getBtnEliminar().addActionListener(this);
-        this.panelEliminar.getListPersonasEliminar().addListSelectionListener(this);    
+        this.panelEliminar.getBtnEliminar().addActionListener(this);  
         cargarListaPersonas();
       
     }
-
+    
     private void cargarListaPersonas() {
         List<Persona> personas = personaNegocio.selectPersonas();
         DefaultListModel<String> modeloLista = new DefaultListModel<>();
@@ -36,8 +35,7 @@ public class ControladorPanelEliminar implements ActionListener, ListSelectionLi
 
         panelEliminar.getListPersonasEliminar().setModel(modeloLista);
     }
-
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == panelEliminar.getBtnEliminar()) {
@@ -63,11 +61,6 @@ public class ControladorPanelEliminar implements ActionListener, ListSelectionLi
         }
     }
 
-	@Override
-	public void valueChanged(ListSelectionEvent arg0) {
-		
-		
-	}
 }
 
 

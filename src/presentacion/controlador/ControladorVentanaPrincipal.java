@@ -12,7 +12,7 @@ import presentacion.vista.PanelModificar;
 import presentacion.vista.VentanaPrincipal;
 
 public class ControladorVentanaPrincipal implements ActionListener {
-	private VentanaPrincipal ventana;
+    private VentanaPrincipal ventana;
     private PersonaNegocio personaNegocio;
 
     public ControladorVentanaPrincipal(VentanaPrincipal ventana) {
@@ -21,13 +21,12 @@ public class ControladorVentanaPrincipal implements ActionListener {
         
         ventana.getMntmAgregar().addActionListener(e -> mostrarPanelAgregar());
         ventana.getMntmModificar().addActionListener(e -> mostrarPanelModificar());
-        ventana.getMntmEliminar().addActionListener(e -> ventana.mostrarPanel(new PanelEliminar()));
+        ventana.getMntmEliminar().addActionListener(e -> mostrarPanelEliminar());
         ventana.getMntmListar().addActionListener(e -> ventana.mostrarPanel(new PanelListar()));
     }
 
     private void mostrarPanelAgregar() {
         PanelAgregar panelAgregar = new PanelAgregar();
-       
         new ControladorPanelAgregar(panelAgregar, personaNegocio);
         ventana.mostrarPanel(panelAgregar);
     }
@@ -37,13 +36,20 @@ public class ControladorVentanaPrincipal implements ActionListener {
         new ControladorPanelModificar(panelModificar, personaNegocio);
         ventana.mostrarPanel(panelModificar);
     }
-    
+
+    private void mostrarPanelEliminar() {
+        PanelEliminar panelEliminar = new PanelEliminar();
+        new ControladorPanelEliminar(panelEliminar, personaNegocio); 
+        ventana.mostrarPanel(panelEliminar);
+    }
+
     public void inicializar() {
         this.ventana.setVisible(true);
     }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {}
+    @Override
+    public void actionPerformed(ActionEvent e) {}
+}
 
 		
-	}
+	

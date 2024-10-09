@@ -18,9 +18,10 @@ public class Principal {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				System.out.println("Número de personas obtenidas: "); 
 			}
 		});
 	}
 
-
+	
 }

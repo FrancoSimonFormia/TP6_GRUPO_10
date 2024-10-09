@@ -29,7 +29,7 @@ public class ControladorPanelEliminar implements ActionListener{
         DefaultListModel<String> modeloLista = new DefaultListModel<>();
 
         for (Persona persona : personas) {
-            String infoPersona = persona.getNombre() + " " + persona.getApellido();
+            String infoPersona = persona.getNombre() + " " + persona.getApellido() + " " + persona.getDni();
             modeloLista.addElement(infoPersona);
         }
 
@@ -49,7 +49,12 @@ public class ControladorPanelEliminar implements ActionListener{
                         JOptionPane.YES_NO_OPTION);
           
                 if (confirmacion == JOptionPane.YES_OPTION) {
-                    panelEliminar.mostrarMensaje("Eliminando persona: " + selectedValue);              
+                    panelEliminar.mostrarMensaje("Eliminando persona: " + selectedValue);
+                    String result = selectedValue.replaceAll("[^\\d]", "");
+                    boolean estado = personaNegocio.delete(result);
+                    String mensaje = estado ? "Persona eliminada con éxito" : "Error al eliminar la persona";
+    		        panelEliminar.mostrarMensaje(mensaje);
+                    
 
                     cargarListaPersonas(); 
                 } else {

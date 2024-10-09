@@ -103,7 +103,7 @@ public class PersonaDaoImp implements PersonaDao
 		
 	}
 	
-public boolean delete(Persona persona) {
+public boolean delete(String dni) {
 		
 		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
@@ -112,7 +112,7 @@ public boolean delete(Persona persona) {
 		try
 		{
 			statement = conexion.prepareStatement(delete);
-			statement.setString(3, persona.getDni());
+			statement.setString(1, dni);
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();

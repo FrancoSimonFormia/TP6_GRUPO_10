@@ -39,8 +39,8 @@ public class PersonaNegocioImp implements PersonaNegocio{
 	}
 
 	@Override
-	public boolean delete(Persona persona) {
-		return pdao.delete(persona);
+	public boolean delete(String dni) {
+		return pdao.delete(dni);
 	}
 	
 

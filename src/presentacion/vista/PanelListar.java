@@ -2,7 +2,6 @@ package presentacion.vista;
 
 import javax.swing.JPanel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 
 
 public class PanelListar extends JPanel {
@@ -13,7 +12,7 @@ public class PanelListar extends JPanel {
         setLayout(null);
         
         listPersonasEliminar = new JList<>();
-        listPersonasEliminar.setBounds(118, 49, 173, 111);
+        listPersonasEliminar.setBounds(139, 41, 173, 111);
         add(listPersonasEliminar);
 
     }
@@ -23,10 +22,6 @@ public class PanelListar extends JPanel {
     }
 
     private static final long serialVersionUID = 1L;
-    
-    public void mostrarMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje);
-    }
 }
 
 

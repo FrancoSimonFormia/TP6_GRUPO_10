@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JTextField;
+import javax.swing.text.AbstractDocument;
 
 import entidad.Persona;
 import negocio.PersonaNegocio;
@@ -23,13 +24,19 @@ public class ControladorPanelAgregar implements ActionListener {
         this.panelAgregar.getBtnAceptar().addActionListener(this);
         
         
-        KeyListener soloNumerosKeyListener = new SoloNumerosKeyListener();
-        this.panelAgregar.getTxtDni().addKeyListener(soloNumerosKeyListener);
-
+        //KeyListener soloNumerosKeyListener = new SoloNumerosKeyListener();
+        //this.panelAgregar.getTxtDni().addKeyListener(soloNumerosKeyListener);
+        AbstractDocument docTxtDni = (AbstractDocument) this.panelAgregar.getTxtDni().getDocument();
+        docTxtDni.setDocumentFilter(new SoloNumerosDocumentFilter());
         
-        KeyListener soloLetrasKeyListener = new SoloLetrasKeyListener();
-        this.panelAgregar.getTxtNombre().addKeyListener(soloLetrasKeyListener);
-        this.panelAgregar.getTxtApellido().addKeyListener(soloLetrasKeyListener);
+        //KeyListener soloLetrasKeyListener = new SoloLetrasKeyListener();
+        //this.panelAgregar.getTxtNombre().addKeyListener(soloLetrasKeyListener);
+        //this.panelAgregar.getTxtApellido().addKeyListener(soloLetrasKeyListener);
+        
+		 AbstractDocument docTxtNombre = (AbstractDocument) this.panelAgregar.getTxtNombre().getDocument();
+		 AbstractDocument docTxtApellido = (AbstractDocument) this.panelAgregar.getTxtApellido().getDocument();
+		 docTxtNombre.setDocumentFilter(new SoloLetrasDocumentFilter());
+		 docTxtApellido.setDocumentFilter(new SoloLetrasDocumentFilter());
     }
     
     private boolean esSoloLetras(String cadena) {
@@ -42,9 +49,9 @@ public class ControladorPanelAgregar implements ActionListener {
 
     private void AgregarPersona(ActionEvent a) {
     	
-        String dni = panelAgregar.getDni();
-        String nombre = panelAgregar.getNombre();
-        String apellido = panelAgregar.getApellido();
+        String dni = panelAgregar.getDni().trim();
+        String nombre = panelAgregar.getNombre().trim();
+        String apellido = panelAgregar.getApellido().trim();
 
         if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
             panelAgregar.mostrarMensaje("Debe completar todos los campos.");

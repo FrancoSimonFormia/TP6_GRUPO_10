@@ -10,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.AbstractDocument;
 
 import entidad.Persona;
 import negocio.PersonaNegocio;
@@ -25,6 +26,24 @@ public class ControladorPanelModificar {
         this.personaNegocio = personaNegocio;
         cargarListaPersonas();
         
+		JTextField txtNombre = panelModificar.getTxtNombre();
+		JTextField txtApellido = panelModificar.getTxtApellido();
+		JTextField txtDni = panelModificar.getTxtDni();
+		
+		//KeyListener SoloLetrasKeyListener = new SoloLetrasKeyListener();
+		//txtNombre.addKeyListener(SoloLetrasKeyListener);
+		//txtApellido.addKeyListener(SoloLetrasKeyListener);
+        
+		 AbstractDocument docTxtNombre = (AbstractDocument) txtNombre.getDocument();
+		 AbstractDocument docTxtApellido = (AbstractDocument) txtApellido.getDocument();
+		 docTxtNombre.setDocumentFilter(new SoloLetrasDocumentFilter());
+		 docTxtApellido.setDocumentFilter(new SoloLetrasDocumentFilter());
+		
+		
+		txtNombre.setEditable(false);
+		txtApellido.setEditable(false);
+		txtDni.setEditable(false);
+        
         //Carga los datos en las cajas de texto realizada una seleccion
         ListSelectionListener modificarPersonaListSelectionListener = new ModificarPersonaListSelectionListener(panelModificar);
         this.panelModificar.getListPersonas().addListSelectionListener(modificarPersonaListSelectionListener);
@@ -37,10 +56,6 @@ public class ControladorPanelModificar {
 				JTextField txtNombre = panelModificar.getTxtNombre();
 				JTextField txtApellido = panelModificar.getTxtApellido();
 				JTextField txtDni = panelModificar.getTxtDni();
-				
-				KeyListener SoloLetrasKeyListener = new SoloLetrasKeyListener();
-				txtNombre.addKeyListener(SoloLetrasKeyListener);
-				txtApellido.addKeyListener(SoloLetrasKeyListener);
 				
 		        String dni = txtDni.getText().trim();
 		        String nombre = txtNombre.getText().trim();
